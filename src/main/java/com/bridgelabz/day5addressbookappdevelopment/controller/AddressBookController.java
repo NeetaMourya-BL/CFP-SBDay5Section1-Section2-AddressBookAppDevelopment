@@ -1,44 +1,52 @@
 package com.bridgelabz.day5addressbookappdevelopment.controller;
 
 import com.bridgelabz.day5addressbookappdevelopment.dto.AddressBookDTO;
+import com.bridgelabz.day5addressbookappdevelopment.dto.ResponseDTO;
+import com.bridgelabz.day5addressbookappdevelopment.model.AddressBookData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/addressbook")
 public class AddressBookController {
 
-    @GetMapping("/get")
-    public ResponseEntity<String> getAddressBookData(){
-        return new ResponseEntity<String>("Get Call Success",HttpStatus.OK);
+    @RequestMapping(value= {"","/","get"})
+    public ResponseEntity<ResponseDTO> getAddressBookData(){
+        AddressBookData addressBookData=null;
+        addressBookData=new AddressBookData(1,new AddressBookDTO("Neeta", "Mourya", "Dayalband", "Bilaspur", "Chattisgarh", 495001, "8269068794", "neeta.mourya@bridgelabz.com"));
+        ResponseDTO responseDTO = new ResponseDTO("Get Call Success",addressBookData);
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
     }
 
     @GetMapping("/get/{personId}")
-    public ResponseEntity<String> getAddressBookData(@PathVariable("personId") int personId){
-        return new ResponseEntity<String>("Get Call Success for id:"+personId,HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> getAddressBookData(@PathVariable("personId") int personId){
+        AddressBookData addressBookData=null;
+        addressBookData=new AddressBookData(1,new AddressBookDTO("Neeta", "Mourya", "Dayalband", "Bilaspur", "Chattisgarh", 495001, "8269068794", "neeta.mourya@bridgelabz.com"));
+        ResponseDTO responseDTO = new ResponseDTO("Get Call Success for id:", addressBookData);
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> addAddressBookData(@RequestBody AddressBookDTO addressBookDTO){
-        return new ResponseEntity<String>("Created Address book data for:"+addressBookDTO,HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> addAddressBookData(@RequestBody AddressBookDTO addressBookDTO){
+        AddressBookData addressBookData=null;
+        addressBookData=new AddressBookData(3,addressBookDTO);
+        ResponseDTO responseDTO = new ResponseDTO("Create Employee payroll data for:", addressBookData);
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<String> updateAddressBookData(@RequestBody AddressBookDTO addressBookDTO){
-        return new ResponseEntity<String>("Updated Address book Data for: "+addressBookDTO,HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> updateAddressBookData(@RequestBody AddressBookDTO addressBookDTO){
+        AddressBookData addressBookData=null;
+        addressBookData=new AddressBookData(3, addressBookDTO);
+        ResponseDTO responseDTO = new ResponseDTO("Update Employee payroll Data for: ", addressBookData);
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{personId}")
-    public ResponseEntity<String> deleteAddressBookData(@PathVariable("personId") int personId){
-        return new ResponseEntity<String>("Delete Call Success for id: "+personId,HttpStatus.OK);
+    public ResponseEntity<ResponseDTO> deleteAddressBookdata(@PathVariable("personId") int personId){
+        ResponseDTO responseDTO = new ResponseDTO("Delete Call Success for id: ", "personId "+personId);
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
     }
+
 }

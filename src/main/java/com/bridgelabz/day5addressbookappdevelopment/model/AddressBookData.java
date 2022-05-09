@@ -1,14 +1,30 @@
-package com.bridgelabz.day5addressbookappdevelopment.dto;
+package com.bridgelabz.day5addressbookappdevelopment.model;
 
-public class AddressBookDTO {
-    public String firstName;
-    public String lastName;
-    public String address;
-    public String city;
-    public String state;
-    public int zip;
-    public String phoneNumber;
-    public String email;
+import com.bridgelabz.day5addressbookappdevelopment.dto.AddressBookDTO;
+
+public class AddressBookData {
+
+    private int personId;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String city;
+    private String state;
+    private int zip;
+    private String phoneNumber;
+    private String email;
+
+    public AddressBookData(int personId, AddressBookDTO addressBookDTO) {
+
+    }
+
+    public int getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -74,7 +90,9 @@ public class AddressBookDTO {
         this.email = email;
     }
 
-    public AddressBookDTO(String firstName, String lastName, String address, String city, String state, int zip, String phoneNumber, String email) {
+    public AddressBookData(int personId, String firstName, String lastName, String address, String city, String state, int zip, String phoneNumber, String email) {
+        super();
+        this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -85,17 +103,15 @@ public class AddressBookDTO {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "AddressBookDTO{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zip=" + zip +
-                ", phoneNumber=" + phoneNumber +
-                ", email='" + email + '\'' +
-                '}';
+    public void AddressBookDataData(int personId, AddressBookDTO addressBookDTO) {
+        this.personId = personId;
+        this.firstName = addressBookDTO.firstName;
+        this.lastName = addressBookDTO.lastName;
+        this.address = addressBookDTO.address;
+        this.city = addressBookDTO.city;
+        this.state = addressBookDTO.state;
+        this.zip = addressBookDTO.zip;
+        this.phoneNumber = addressBookDTO.phoneNumber;
+        this.email = addressBookDTO.email;
     }
 }
